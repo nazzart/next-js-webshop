@@ -7,8 +7,6 @@ export default function FormSelect(props) {
   
   const dropdown = useRef(null)
   
-  const options = ["Mangoes", "Apples", "Oranges"];
-
   const [isOpen, setIsOpen] = useState(false);
 
   const [selectedOption, setSelectedOption] = useState(null);
@@ -35,13 +33,13 @@ export default function FormSelect(props) {
     return (
         <div className="relative">
         <span className="text-white block mb-2 text-sm">{props.label}</span>
-        <div onClick={toggling} className="bg-white text-gray-500 px-4 py-2 cursor-pointer" ref={dropdown}>
+        <div onClick={toggling} className="bg-white text-gray-500 px-4 py-2 cursor-pointer border" ref={dropdown}>
           {selectedOption || "Please select..."}
         </div>
         {isOpen && (
-          <div className="bg-white border-t-2 border-slate-100 shadow-lg absolute w-full">
+          <div className="bg-white border-t-2 border-slate-100 shadow-lg absolute w-full z-10">
             <ul>
-              {options.map(option => (
+              {props.list.map(option => (
                 <li onClick={onOptionClicked(option)} key={Math.random()} className="py-2 cursor-pointer px-4 hover:bg-gray-100">
                   {option}
                 </li>
