@@ -7,7 +7,7 @@ export default function Card(props) {
 
     return (
         
-        <Link href="/" className="bg-white rounded flex mt-6 hover:shadow-lg transition-shadow">
+        <Link href={props.car.seoUrl} className="bg-white rounded flex mt-6 hover:shadow-lg transition-shadow">
             <div className="basis-1/4">
             <Image
                 src="/images/Opel-Crossland.jpg"

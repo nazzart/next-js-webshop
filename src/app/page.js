@@ -2,27 +2,32 @@ import Image from 'next/image'
 import Card from './components/card/card'
 
 export default function Home() {
-
+  
   const carData = [
     {
       brand: "Opel",
       model: "Crossland",
       seoTitle: "Opel Crossland 1.2 Turbo",
+      seoUrl: "/products/opel-crossland-turbo",
       attributes: [{
         name: "Engine",
-        value: "Petrol"
+        value: "Petrol",
+        topParameter: true
       },
       {
         name: "Gearbox",
-        value: "Automatic"
+        value: "Automatic",
+        topParameter: true
       },
       {
         name: "Power",
-        value: "136 hp"
+        value: "136 hp",
+        topParameter: true
       },
       {
         name: "Mileage",
-        value: "54500 km"
+        value: "54500 km",
+        topParameter: true
       }
     ]
     },
@@ -30,21 +35,26 @@ export default function Home() {
       brand: "Opel",
       model: "Crossland",
       seoTitle: "Opel Crossland 1.2 Turbo",
+      seoUrl: "/products/opel-crossland-turbo",
       attributes: [{
         name: "Engine",
-        value: "Petrol"
+        value: "Petrol",
+        topParameter: true
       },
       {
         name: "Gearbox",
-        value: "Automatic"
+        value: "Automatic",
+        topParameter: true
       },
       {
         name: "Power",
-        value: "136 hp"
+        value: "136 hp",
+        topParameter: true
       },
       {
         name: "Mileage",
-        value: "54500 km"
+        value: "54500 km",
+        topParameter: true
       }
     ]
     }
