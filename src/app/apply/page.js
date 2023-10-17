@@ -1,6 +1,7 @@
 import Image from "next/image";
 import FormInput from "../components/ui/form/input/formInput";
 import Button from "../components/ui/button/button";
+import FormTextarea from "../components/ui/form/textarea/formTextarea";
 
 export default function Apply() {
   const carData = {
@@ -46,8 +47,11 @@ export default function Apply() {
                 <div className="mb-4">
                   <FormInput type="text" label="Last name" required />
                 </div>
-                <div>
+                <div className="mb-4">
                   <FormInput type="text" label="E-mail" required />
+                </div>
+                <div>
+                  <FormTextarea label="Message" placeholder="Add something what we should know..." rows="10"/>
                 </div>
               </div>
               <div className="bg-gray-200 rounded-b p-6">
