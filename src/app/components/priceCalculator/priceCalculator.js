@@ -19,7 +19,7 @@ export default function PriceCalculator() {
 
   return (
     <div>
-      <div className="grid gap-4 grid-cols-2 bg-primary p-6 rounded-t">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2 bg-primary p-6 rounded-t">
         <div>
           <FormSelect label="Pick-up location" list={locationList} />
         </div>
@@ -30,7 +30,7 @@ export default function PriceCalculator() {
 
       <div className="bg-white p-6 py-10">
         <h2 className="text-2xl mb-2">Additional equipment and services</h2>
-        <div className="grid gap-4 grid-cols-2">
+        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
           <div>
             <FormCheckbox label="Infant seat (0-1 year) +5€" />
           </div>

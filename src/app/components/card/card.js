@@ -7,13 +7,14 @@ export default function Card(props) {
 
     return (
         
-        <Link href={props.car.seoUrl} className="bg-white rounded flex mt-6 hover:shadow-lg transition-shadow">
+        <Link href={props.car.seoUrl} className="bg-white rounded flex flex-col md:flex-row mt-6 hover:shadow-lg transition-shadow">
             <div className="basis-1/4">
             <Image
                 src="/images/Opel-Crossland.jpg"
                 width={500}
                 height={500}
                 alt="Opel Crossland 1.2 Turbo"
+                className="m-auto"
                 />
             </div>
             <div className="basis-1/2 flex flex-col justify-between p-8">
@@ -31,8 +32,8 @@ export default function Card(props) {
                 ))}
                 </div>
             </div>
-            <div className="basis-1/4 p-8 flex flex-row justify-center items-center">
-                <span>from</span> <span className="text-6xl font-bold text-secondary pl-2">55 €</span>
+            <div className="basis-1/4 p-8 flex flex-row md:justify-center items-center">
+                <span>from</span> <span className="text-2xl lg:text-5xl font-bold text-secondary pl-2">155 €</span>
             </div>
         </Link>
     )

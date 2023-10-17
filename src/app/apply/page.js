@@ -35,12 +35,12 @@ export default function Apply() {
 
   return (
     <div class="container mx-auto mt-8">
-      <div className="flex flex-row">
+      <div className="flex flex-col xl:flex-row flex-col-reverse">
         <div className="basis-3/5">
           <div className="bg-white rounded">
             <form>
               <div className="p-6">
-              <h1 className="text-2xl mb-8">Please fill the form</h1>
+                <h1 className="text-2xl mb-8">Please fill the form</h1>
                 <div className="mb-4">
                   <FormInput type="text" label="First name" required />
                 </div>
@@ -51,7 +51,11 @@ export default function Apply() {
                   <FormInput type="text" label="E-mail" required />
                 </div>
                 <div>
-                  <FormTextarea label="Message" placeholder="Add something what we should know..." rows="10"/>
+                  <FormTextarea
+                    label="Message"
+                    placeholder="Add something what we should know..."
+                    rows="10"
+                  />
                 </div>
               </div>
               <div className="bg-gray-200 rounded-b p-6">
@@ -62,7 +66,7 @@ export default function Apply() {
             </form>
           </div>
         </div>
-        <div className="p-6 pr-20 sticky top-0">
+        <div className="xl:pl-6 pb-10 pr-20 static xl:sticky self-start top-0">
           <h1 className="text-4xl font-bold">{carData.seoTitle}</h1>
           <p className="text-6xl font-bold text-secondary mt-6">55 €</p>
 

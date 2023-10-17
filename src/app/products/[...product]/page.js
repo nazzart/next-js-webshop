@@ -33,7 +33,7 @@ export default function Product() {
 
   return (
     <div class="container mx-auto mt-8">
-      <div className="flex flex-row">
+      <div className="flex flex-col xl:flex-row flex-col-reverse">
         <div className="basis-3/5">
           <div className="bg-white rounded">
           <Image
@@ -50,7 +50,7 @@ export default function Product() {
           </div>
 
         </div>
-        <div className="p-6 pr-20 sticky top-0">
+        <div className="xl:pl-6 pb-10 pr-20 static xl:sticky self-start top-0">
           <h1 className="text-4xl font-bold">{carData.seoTitle}</h1>
           <p className="text-6xl font-bold text-secondary mt-6">55 €</p>
 
