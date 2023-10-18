@@ -1,5 +1,5 @@
 import Image from "next/image";
-import PriceCalculator from "@/app/components/priceCalculator/priceCalculator";
+import PriceCalculator from "../../components/priceCalculator/priceCalculator.js";
 
 export default function Product() {
   const carData = {
