@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator pothos {
+  provider = "prisma-pothos-types"
+}
+
+model Car {
+  id          String @id @default(uuid())
+  brand       String
+  model       String
+  seoTitle    String
+  seoUrl      String
+  imageUrl    String?
+  attributes  Attribute[]
+}
+
+model Attribute {
+  id            String @id @default(cuid())
+  name          String
+  value         String
+  topParameter  Boolean
+  cars          Car[] 
+}
