@@ -18,7 +18,7 @@ model Car {
   brand       String
   model       String
   seoTitle    String
-  seoUrl      String
+  seoUrl      String @unique
   imageUrl    String?
   attributes  Attribute[]
 }

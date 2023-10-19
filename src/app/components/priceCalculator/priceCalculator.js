@@ -1,8 +1,15 @@
+"use client"
+
 import FormSelect from "../ui/form/select/formSelect";
 import FormCheckbox from "../ui/form/checkbox/formCheckbox";
 import Button from "../ui/button/button";
+import { useRouter } from 'next/navigation';
+import { useState } from "react";
 
 export default function PriceCalculator() {
+
+  const router = useRouter()
+
   const locationList = [
     "Location 1, Riga",
     "Location 2, Riga",
@@ -17,14 +24,34 @@ export default function PriceCalculator() {
     "1 month",
   ];
 
+  const [selectedData, setSelectedData] = useState({location: "", duration: ""});
+  const [errors, setErrors] = useState({});
+
+  const validateConfig = () => {
+    const emptyFields = Object.keys(selectedData).filter(key => selectedData[key] === "")
+
+    emptyFields.forEach((field) => {
+      setErrors(prevState => ({...prevState, [field]: true }))
+    })
+    
+    if(!emptyFields.length && Object.keys(errors).length === 0) {
+      router.push('/apply')
+    }
+  }
+
+  const onSelectUpdate = (field, value) => {
+    setErrors(({[field]: value, ...errors }) => errors);
+    setSelectedData(prevState => ({...prevState, [field]: value }))
+  }
+
   return (
     <div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 bg-primary p-6 rounded-t">
         <div>
-          <FormSelect label="Pick-up location" list={locationList} />
+          <FormSelect error={errors?.location} label="Pick-up location" list={locationList} onSelectUpdate={(value) => onSelectUpdate("location", value)}/>
         </div>
         <div>
-          <FormSelect label="Rent duration" list={rentDurationList} />
+          <FormSelect error={errors?.duration} label="Rent duration" list={rentDurationList} onSelectUpdate={(value) => onSelectUpdate("duration", value)}/>
         </div>
       </div>
 
@@ -52,7 +79,7 @@ export default function PriceCalculator() {
         </div>
       </div>
       <div className="bg-gray-200 rounded-b p-6">
-        <Button size="md" classes={"bg-secondary text-white"}>Apply for a car</Button>
+        <Button size="md" classes={"bg-secondary text-white"} onClick={() => validateConfig()}>Apply for a car</Button>
         </div>
     </div>
   );

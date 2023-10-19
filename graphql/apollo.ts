@@ -7,7 +7,7 @@ export const apolloClient = new ApolloClient({
   defaultOptions: {
     query: {
         fetchPolicy: "no-cache",
-        errorPolicy: 'all'
+        errorPolicy: 'all',
     }
 }
 })

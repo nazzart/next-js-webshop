@@ -19,3 +19,25 @@ builder.queryField("cars", (t) =>
       prisma.car.findMany({ ...query })
   })
 )
+
+builder.queryField("car", (t) =>
+  t.prismaField({
+    type: 'Car',
+    args: {
+      seoUrl: t.arg.string({required: true}),
+    },
+    resolve: async (query, _parent, args, _ctx, _info) => {
+
+      const car = await prisma.car.findFirst({ 
+        where: {
+          seoUrl: args.seoUrl, 
+        },
+       })
+
+       if (!car) throw new Error('Car was not found!')
+      
+       return car;
+
+    }
+  })
+)
