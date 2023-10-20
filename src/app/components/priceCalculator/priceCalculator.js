@@ -5,10 +5,14 @@ import FormCheckbox from "../ui/form/checkbox/formCheckbox";
 import Button from "../ui/button/button";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSelectedCar } from "@/redux/carSlice";
+
 
 export default function PriceCalculator() {
 
   const router = useRouter()
+  const dispatch = useDispatch();
 
   const locationList = [
     "Location 1, Riga",
@@ -35,6 +39,7 @@ export default function PriceCalculator() {
     })
     
     if(!emptyFields.length && Object.keys(errors).length === 0) {
+      dispatch(setSelectedCar([selectedData]))
       router.push('/apply')
     }
   }

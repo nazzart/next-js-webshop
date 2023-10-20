@@ -1,9 +1,14 @@
-import Image from "next/image";
+"use client";
+
 import FormInput from "../components/ui/form/input/formInput";
 import Button from "../components/ui/button/button";
 import FormTextarea from "../components/ui/form/textarea/formTextarea";
+import {useSelector } from "react-redux";
 
 export default function Apply() {
+
+  const selectedCar = useSelector((state) => state.car.selectedCar);
+  console.log(selectedCar, "selectedCar");
   const carData = {
     brand: "Opel",
     model: "Crossland",
