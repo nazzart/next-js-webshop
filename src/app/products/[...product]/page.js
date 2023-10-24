@@ -8,6 +8,9 @@ async function getData(seoUrl) {
       query: gql`
       query findCarBySlug($seoUrl: String!) {
         car(seoUrl: $seoUrl) {
+          id
+          brand
+          model
           seoUrl
           seoTitle
           attributes {
@@ -31,6 +34,7 @@ const carData = await getData(`/products/${params.product.shift()}`);
 
 if(carData.car.length === 0) return ( <p>No car found!</p> ) ;
 
+
 return (
     <div class="container mx-auto mt-8">
       <div className="flex flex-col xl:flex-row flex-col-reverse">
@@ -46,7 +50,7 @@ return (
           </div>
           
           <div className="pt-6">
-          <PriceCalculator/>
+          <PriceCalculator car={carData.car}/>
           </div>
 
         </div>
