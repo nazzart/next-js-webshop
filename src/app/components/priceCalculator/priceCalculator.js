@@ -6,7 +6,7 @@ import Button from "../ui/button/button";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { setLocation, setEquipment, setCar } from "@/redux/configuratorSlice";
+import { setLocation, setEquipment, setCar, setDuration } from "@/redux/configuratorSlice";
 
 
 export default function PriceCalculator({car}) {
@@ -71,6 +71,7 @@ export default function PriceCalculator({car}) {
     
     if(!emptyFields.length && Object.keys(errors).length === 0) {
       dispatch(setLocation(selectedData.location))
+      dispatch(setDuration(selectedData.duration))
       dispatch(setEquipment(selectedData.equipment))
       router.push('/apply')
     }

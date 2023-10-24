@@ -13,10 +13,12 @@ async function getData(seoUrl) {
           model
           seoUrl
           seoTitle
+          imageUrl
           attributes {
             name
             value
           }
+          price
         }
       }
     `,
@@ -41,10 +43,10 @@ return (
         <div className="basis-3/5">
           <div className="bg-white rounded">
           <Image
-            src="/images/Opel-Crossland.jpg"
+            src={carData.car.imageUrl}
             width={800}
-            height={800}
-            alt={carData.seoTitle}
+            height={600}
+            alt={carData.car.seoTitle}
             className="m-auto"
           />
           </div>
@@ -56,7 +58,7 @@ return (
         </div>
         <div className="xl:pl-6 pb-10 pr-20 static xl:sticky self-start top-0">
           <h1 className="text-4xl font-bold">{carData.car.seoTitle}</h1>
-          <p className="text-6xl font-bold text-secondary mt-6">55 €</p>
+          <p className="text-6xl font-bold text-secondary mt-6">{carData.car.price} €</p>
 
           <ul className="mt-10">
             {carData.car.attributes?.map((attribute, id) => (

@@ -2,13 +2,14 @@ import { builder } from "../builder";
 
 builder.prismaObject('Car', {
   fields: (t) => ({
-    id: t.exposeString('id'),
+    id: t.exposeInt('id'),
     brand: t.exposeString('brand'),
     model: t.exposeString('model'),
     seoTitle: t.exposeString('seoTitle'),
     seoUrl: t.exposeString('seoUrl'),
     imageUrl: t.exposeString('imageUrl'),
-    attributes: t.relation('attributes')
+    attributes: t.relation('attributes'),
+    price: t.exposeInt('price')
   })
 })
 

@@ -14,17 +14,18 @@ generator pothos {
 }
 
 model Car {
-  id          String @id @default(uuid())
+  id            Int       @id @default(autoincrement())
   brand       String
   model       String
   seoTitle    String
   seoUrl      String @unique
   imageUrl    String?
   attributes  Attribute[]
+  price       Int
 }
 
 model Attribute {
-  id            String @id @default(cuid())
+  id            Int       @id @default(autoincrement())
   name          String
   value         String
   topParameter  Boolean
