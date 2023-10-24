@@ -6,10 +6,10 @@ import { persistReducer } from 'redux-persist';
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 import thunk from 'redux-thunk';
 
-import carReducer from '../redux/carSlice';
+import configuratorReducer from './configuratorSlice';
 
 const reducers = combineReducers({
-  car: carReducer,
+  configurator: configuratorReducer,
 });
 
 const createNoopStorage = () => {

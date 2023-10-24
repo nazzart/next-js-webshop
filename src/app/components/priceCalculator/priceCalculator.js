@@ -6,7 +6,7 @@ import Button from "../ui/button/button";
 import { useRouter } from 'next/navigation';
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setSelectedCar } from "@/redux/carSlice";
+import { setLocation, setEquipment } from "@/redux/configuratorSlice";
 
 
 export default function PriceCalculator() {
@@ -28,7 +28,34 @@ export default function PriceCalculator() {
     "1 month",
   ];
 
-  const [selectedData, setSelectedData] = useState({location: "", duration: ""});
+  const equipmentList = [
+    {
+      label: "Infant seat (0-1 year)",
+      price: "5€"
+    },
+    {
+      label: "Child seat with seat belts (1-5 years)",
+      price: "5€"
+    },
+    {
+      label: "PS navigation system with local maps",
+      price: "5€"
+    },
+    {
+      label: "4G WiFi",
+      price: "5€"
+    },
+    {
+      label: "Extra driver",
+      price: "5€"
+    },
+    {
+      label: "Full insurance without liability",
+      price: "5€"
+    }
+  ];
+
+  const [selectedData, setSelectedData] = useState({location: "", duration: "", equipment: []});
   const [errors, setErrors] = useState({});
 
   const validateConfig = () => {
@@ -39,7 +66,9 @@ export default function PriceCalculator() {
     })
     
     if(!emptyFields.length && Object.keys(errors).length === 0) {
-      dispatch(setSelectedCar([selectedData]))
+      //dispatch(setSelectedCar([selectedData]))
+      dispatch(setLocation(selectedData.location))
+      dispatch(setEquipment(selectedData.equipment))
       router.push('/apply')
     }
   }
@@ -47,6 +76,16 @@ export default function PriceCalculator() {
   const onSelectUpdate = (field, value) => {
     setErrors(({[field]: value, ...errors }) => errors);
     setSelectedData(prevState => ({...prevState, [field]: value }))
+  }
+
+  const onCheckUpdate = (isChecked, value) => {
+    if(isChecked){
+      setSelectedData(prevState => ({ ...prevState, equipment: [...prevState.equipment, value ] }))
+    } else {
+      setSelectedData(prevState => ({... prevState, equipment: selectedData.equipment.filter(function(item) { 
+          return item !== value 
+      })}));
+    }
   }
 
   return (
@@ -59,28 +98,14 @@ export default function PriceCalculator() {
           <FormSelect error={errors?.duration} label="Rent duration" list={rentDurationList} onSelectUpdate={(value) => onSelectUpdate("duration", value)}/>
         </div>
       </div>
-
       <div className="bg-white p-6 py-10">
         <h2 className="text-2xl mb-2">Additional equipment and services</h2>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
-          <div>
-            <FormCheckbox label="Infant seat (0-1 year) +5€" />
-          </div>
-          <div>
-            <FormCheckbox label="Child seat with seat belts (1-5 years) +5€" />
-          </div>
-          <div>
-            <FormCheckbox label="GPS navigation system with local maps +5€" />
-          </div>
-          <div>
-            <FormCheckbox label="4G WiFi +5€" />
-          </div>
-          <div>
-            <FormCheckbox label="Extra driver +5€" />
-          </div>
-          <div>
-            <FormCheckbox label="Full insurance without liability +20€" />
-          </div>
+          {equipmentList.map((equipment, id) => (
+            <div key={id}>
+              <FormCheckbox value={equipment.label} label={equipment.label+" "+equipment.price} onCheckUpdate={(isChecked, value) => onCheckUpdate(isChecked, value)} />
+            </div>
+          ))}
         </div>
       </div>
       <div className="bg-gray-200 rounded-b p-6">

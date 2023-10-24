@@ -7,8 +7,8 @@ import {useSelector } from "react-redux";
 
 export default function Apply() {
 
-  const selectedCar = useSelector((state) => state.car.selectedCar);
-  console.log(selectedCar, "selectedCar");
+  const configurator = useSelector((state) => state.configurator);
+  console.log(configurator, "configurator");
   const carData = {
     brand: "Opel",
     model: "Crossland",
