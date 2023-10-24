@@ -10,7 +10,7 @@ export default function Apply() {
   const configurator = useSelector((state) => state.configurator);
 
   return (
-    <div class="container mx-auto mt-8">
+    <div className="container mx-auto mt-8">
       <div className="flex flex-col xl:flex-row flex-col-reverse">
         <div className="basis-3/5">
           <div className="bg-white rounded">

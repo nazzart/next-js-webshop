@@ -1,44 +1,59 @@
 import { builder } from "../builder";
 
-builder.prismaObject('Car', {
+builder.prismaObject("Car", {
   fields: (t) => ({
-    id: t.exposeInt('id'),
-    brand: t.exposeString('brand'),
-    model: t.exposeString('model'),
-    seoTitle: t.exposeString('seoTitle'),
-    seoUrl: t.exposeString('seoUrl'),
-    imageUrl: t.exposeString('imageUrl'),
-    attributes: t.relation('attributes'),
-    price: t.exposeInt('price')
-  })
-})
+    id: t.exposeInt("id"),
+    brand: t.exposeString("brand"),
+    model: t.exposeString("model"),
+    seoTitle: t.exposeString("seoTitle"),
+    seoUrl: t.exposeString("seoUrl"),
+    imageUrl: t.exposeString("imageUrl"),
+    attributes: t.relation("attributes"),
+    price: t.exposeInt("price"),
+  }),
+});
 
 builder.queryField("cars", (t) =>
   t.prismaField({
-    type: ['Car'],
+    type: ["Car"],
     resolve: (query, _parent, _args, _ctx, _info) =>
-      prisma.car.findMany({ ...query })
+      prisma.car.findMany({ ...query }),
   })
-)
+);
 
 builder.queryField("car", (t) =>
   t.prismaField({
-    type: 'Car',
+    type: "Car",
     args: {
-      seoUrl: t.arg.string({required: true}),
+      seoUrl: t.arg.string({ required: true }),
     },
-    resolve: async (query, _parent, args, _ctx, _info) => {
-
-      const car = await prisma.car.findFirst({ 
+    resolve: async (query, _parent, _args, _ctx, _info) => {
+      const car = await prisma.car.findFirst({
         where: {
-          seoUrl: args.seoUrl, 
+          seoUrl: _args.seoUrl,
         },
-       })
+      });
 
-       if (!car) throw new Error('Car was not found!')
-      
-       return car;
+      if (!car) throw new Error("Car was not found!");
 
-    }
+      return car;
+    },
   })
-)
+);
+
+builder.queryField("searchCar", (t) =>
+  t.prismaField({
+    type: ["Car"],
+    args: {
+      keyword: t.arg.string({ required: true }),
+    },
+    resolve: (query, _parent, _args, _ctx, _info) =>
+      prisma.car.findMany({
+        where: {
+          seoTitle: {
+            contains: _args.keyword,
+          },
+        },
+      }),
+  })
+);

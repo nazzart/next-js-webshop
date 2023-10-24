@@ -38,7 +38,7 @@ if(carData.car.length === 0) return ( <p>No car found!</p> ) ;
 
 
 return (
-    <div class="container mx-auto mt-8">
+    <div className="container mx-auto mt-8">
       <div className="flex flex-col xl:flex-row flex-col-reverse">
         <div className="basis-3/5">
           <div className="bg-white rounded">
