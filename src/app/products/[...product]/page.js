@@ -30,7 +30,6 @@ async function getData(seoUrl) {
 
 }
 
-
 export default async function Product({ params }) {
 
 const carData = await getData(`/products/${params.product.shift()}`);
@@ -51,11 +50,9 @@ return (
             className="m-auto"
           />
           </div>
-          
           <div className="pt-6">
           <PriceCalculator car={carData.car}/>
           </div>
-
         </div>
         <Sidebar title={carData.car.seoTitle} attributes={carData.car.attributes} price={carData.car.price}/>
       </div>      

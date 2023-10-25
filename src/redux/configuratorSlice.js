@@ -16,6 +16,7 @@ const slice = createSlice({
   reducers: {
     setCar(state, action) {
       state.car = action.payload;
+      state.price = action.payload.price;
     },
     setLocation(state, action) {
       state.location = action.payload;

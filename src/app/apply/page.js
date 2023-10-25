@@ -3,11 +3,11 @@
 import FormInput from "../components/ui/form/input/formInput";
 import Button from "../components/ui/button/button";
 import FormTextarea from "../components/ui/form/textarea/formTextarea";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Sidebar from "../components/sidebar/sidebar";
 
 export default function Apply() {
-
+  
   const configurator = useSelector((state) => state.configurator);
   return (
     <div className="container mx-auto mt-12">
@@ -42,7 +42,7 @@ export default function Apply() {
             </form>
           </div>
         </div>
-        <Sidebar title={configurator.car.seoTitle} attributes={configurator.car.attributes} price={configurator.price}/>
+        <Sidebar title={configurator.car.seoTitle} attributes={configurator.car.attributes} price={configurator.car.price}/>
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ import { useLazyQuery } from "@apollo/client";
 import { gql } from "@apollo/client";
 import Link from "next/link";
 import Image from "next/image";
+import SearchIcon from "../../ui/icons/searchIcon";
+
 
 export default function Search() {
   const [keyword, setKeyword] = useState("");
@@ -69,11 +71,13 @@ export default function Search() {
 
   return (
     <div className="w-1/3 hidden md:block relative" ref={dropdown}>
+      
       <FormInput
         placeholder="Search for the car..."
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
       />
+      <SearchIcon size={20} className="absolute top-0 bottom-0 right-3 m-auto"/>
       {isOpen && (
         <div
           className="absolute bg-white w-full shadow-lg z-10" 

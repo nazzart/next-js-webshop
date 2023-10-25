@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import {useRef} from "react"
 import { clsx } from "clsx";
+import ArrowIcon from "../../icons/arrowIcon";
 
 
 export default function FormSelect({error, disabled, label, list, onSelectUpdate}) {
   
   const styles = {
-    base: "bg-white text-gray-500 px-4 py-2 cursor-pointer border",
+    base: "bg-white text-gray-500 pl-4 pr-10 py-2 cursor-pointer border relative",
     state: {
       error: "py-30 border-red-500 focus:border-red-500 text-red-500",
       disabled: "cursor-not-allowed bg-gray-100 text-gray-400",
@@ -54,6 +55,7 @@ export default function FormSelect({error, disabled, label, list, onSelectUpdate
           disabled && styles.state.disabled,
         ])} ref={dropdown}>
           {selectedOption.label || "Please select..."}
+          <ArrowIcon size={24} direction={isOpen ? "up" : "down"} className="absolute top-0 bottom-0 right-3 m-auto" />
         </div>
         {isOpen && (
           <div className="bg-white border-t-2 border-slate-100 shadow-lg absolute w-full z-10">

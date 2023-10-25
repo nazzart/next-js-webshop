@@ -14,7 +14,7 @@ export default function FormInput({
   onChange,
 }) {
   const styles = {
-    base: "px-3 outline-0 py-2 w-full border-2 border-slate-100 focus:border-primary",
+    base: "pl-4 pr-10 outline-0 py-2 w-full border-2 border-slate-100 focus:border-primary",
     state: {
       error: "py-30 border-red-500 focus:border-red-500 text-red-500",
       disabled: "cursor-not-allowed bg-gray-100 shadow-inner text-gray-400",
@@ -30,7 +30,8 @@ export default function FormInput({
         ])}
         htmlFor={label}
       >
-        {label}{required ? "*" :""}
+        {label}
+        {required ? "*" : ""}
       </label>
       <input
         className={clsx([

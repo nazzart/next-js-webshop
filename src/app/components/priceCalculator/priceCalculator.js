@@ -17,9 +17,11 @@ export default function PriceCalculator({car}) {
   const configurator = useSelector((state) => state.configurator);
 
   useEffect(() => {
+    dispatch(setEquipment(""));
     dispatch(setCar(car))
   }, [])
 
+  
   const locationList = [
     {value: 1, label: "Location 1, Riga"},
     {value: 2, label: "Location 2, Riga"},
