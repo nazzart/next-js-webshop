@@ -19,7 +19,7 @@ export default function FormSelect({error, disabled, label, list, onSelectUpdate
   
   const [isOpen, setIsOpen] = useState(false);
 
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState({value: null, label: null});
 
   const toggling = () => { 
     if(!disabled){
@@ -27,10 +27,10 @@ export default function FormSelect({error, disabled, label, list, onSelectUpdate
     }
   }
 
-  const handleSelect = value => () => {
-    setSelectedOption(value);
+  const handleSelect = option => () => {
+    setSelectedOption(option);
     setIsOpen(false);
-    onSelectUpdate(value);
+    onSelectUpdate(option);
   };
 
   const closeWhenClickOutside = (e)=>{
@@ -53,14 +53,14 @@ export default function FormSelect({error, disabled, label, list, onSelectUpdate
           error && styles.state.error,
           disabled && styles.state.disabled,
         ])} ref={dropdown}>
-          {selectedOption || "Please select..."}
+          {selectedOption.label || "Please select..."}
         </div>
         {isOpen && (
           <div className="bg-white border-t-2 border-slate-100 shadow-lg absolute w-full z-10">
             <ul>
               {list.map(option => (
                 <li onClick={handleSelect(option)} key={Math.random()} className="py-2 cursor-pointer px-4 hover:bg-gray-100">
-                  {option}
+                  {option.label}
                 </li>
               ))}
             </ul>

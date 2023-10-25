@@ -31,7 +31,7 @@ export default async function Home() {
 
   return (
     <div className="container mx-auto">
-      <h1 className="text-3xl mb-8 mt-8">Available cars</h1>
+      <h1 className="text-3xl mb-8 mt-8">Available cars ({carData.cars.length})</h1>
       {carData.cars.map((car, id) => (
         <Card data={car} key={id} />
       ))}

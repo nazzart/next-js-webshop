@@ -7,6 +7,7 @@ const initialState = {
   location: "",
   duration: "",
   equipment: [],
+  price: null
 };
 
 const slice = createSlice({
@@ -25,10 +26,13 @@ const slice = createSlice({
     setEquipment(state, action) {
       state.equipment = action.payload;
     },
+    setPrice(state, action) {
+      state.price = action.payload
+    }
   },
 });
 
 export default slice.reducer;
 
 // Actions
-export const { setCar, setLocation, setDuration, setEquipment } = slice.actions;
+export const { setCar, setLocation, setDuration, setEquipment, setPrice } = slice.actions;

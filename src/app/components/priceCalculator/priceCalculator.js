@@ -5,8 +5,8 @@ import FormCheckbox from "../ui/form/checkbox/formCheckbox";
 import Button from "../ui/button/button";
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { setLocation, setEquipment, setCar, setDuration } from "@/redux/configuratorSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setLocation, setEquipment, setCar, setDuration, setPrice } from "@/redux/configuratorSlice";
 
 
 export default function PriceCalculator({car}) {
@@ -14,48 +14,57 @@ export default function PriceCalculator({car}) {
   const router = useRouter()
   const dispatch = useDispatch();
 
+  const configurator = useSelector((state) => state.configurator);
+
   useEffect(() => {
     dispatch(setCar(car))
   }, [])
 
   const locationList = [
-    "Location 1, Riga",
-    "Location 2, Riga",
-    "Location 3, Riga",
+    {value: 1, label: "Location 1, Riga"},
+    {value: 2, label: "Location 2, Riga"},
+    {value: 3, label: "Location 3, Riga"}
   ];
+
   const rentDurationList = [
-    "1 day",
-    "3 days",
-    "1 week",
-    "2 weeks",
-    "3 weeks",
-    "1 month",
+    {value: 1, label: "1 day", price: car.price},
+    {value: 2, label: "3 days", price: car.price * 3},
+    {value: 3, label: "1 week", price: car.price *  7},
+    {value: 4, label: "2 weeks", price: car.price *  14},
+    {value: 5, label: "3 weeks", price: car.price *  21},
+    {value: 6, label: "1 month", price: car.price * 30},
   ];
 
   const equipmentList = [
-    {
+    { 
+      value: 1,
       label: "Infant seat (0-1 year)",
-      price: "5€"
+      price: 5
     },
     {
+      value: 2,
       label: "Child seat with seat belts (1-5 years)",
-      price: "5€"
+      price: 6
     },
     {
+      value: 3,
       label: "PS navigation system with local maps",
-      price: "5€"
+      price: 10
     },
     {
+      value: 4,
       label: "4G WiFi",
-      price: "5€"
+      price: 15
     },
     {
+      value: 5,
       label: "Extra driver",
-      price: "5€"
+      price: 45
     },
     {
+      value: 6,
       label: "Full insurance without liability",
-      price: "5€"
+      price: 25
     }
   ];
 
@@ -77,18 +86,27 @@ export default function PriceCalculator({car}) {
     }
   }
 
-  const onSelectUpdate = (field, value) => {
+  const onSelectUpdate = (field, option) => {
+    const {value, price} = option;
     setErrors(({[field]: value, ...errors }) => errors);
     setSelectedData(prevState => ({...prevState, [field]: value }))
+    if(price) {
+      const totalEquipmentPrice  = selectedData.equipment.reduce((acc, value) => acc + value.price, 0);
+      dispatch(setPrice(price + totalEquipmentPrice))
+    }
   }
 
   const onCheckUpdate = (isChecked, value) => {
+
+    const selectedItem = equipmentList.find((item) => item.value === value);
+
     if(isChecked){
-      setSelectedData(prevState => ({ ...prevState, equipment: [...prevState.equipment, value ] }))
+      setSelectedData(prevState => ({ ...prevState, equipment: [...prevState.equipment, selectedItem ] }))
+      dispatch(setPrice(configurator.price + selectedItem.price))
+
     } else {
-      setSelectedData(prevState => ({... prevState, equipment: selectedData.equipment.filter(function(item) { 
-          return item !== value 
-      })}));
+      setSelectedData(prevState => ({... prevState, equipment: selectedData.equipment.filter((item) => item.value !== value )}))
+      dispatch(setPrice(configurator.price - selectedItem.price))
     }
   }
 
@@ -96,10 +114,10 @@ export default function PriceCalculator({car}) {
     <div>
       <div className="grid gap-4 grid-cols-1 md:grid-cols-2 bg-primary p-6 rounded-t">
         <div>
-          <FormSelect error={errors?.location} label="Pick-up location" list={locationList} onSelectUpdate={(value) => onSelectUpdate("location", value)}/>
+          <FormSelect error={errors?.location} label="Pick-up location" list={locationList} onSelectUpdate={(option) => onSelectUpdate("location", option)}/>
         </div>
         <div>
-          <FormSelect error={errors?.duration} label="Rent duration" list={rentDurationList} onSelectUpdate={(value) => onSelectUpdate("duration", value)}/>
+          <FormSelect error={errors?.duration} label="Rent duration" list={rentDurationList} onSelectUpdate={(option) => onSelectUpdate("duration", option)}/>
         </div>
       </div>
       <div className="bg-white p-6 py-10">
@@ -107,7 +125,7 @@ export default function PriceCalculator({car}) {
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
           {equipmentList.map((equipment, id) => (
             <div key={id}>
-              <FormCheckbox value={equipment.label} label={equipment.label+" "+equipment.price} onCheckUpdate={(isChecked, value) => onCheckUpdate(isChecked, value)} />
+              <FormCheckbox value={equipment.value} label={`${equipment.label} ${equipment.price} €`} onCheckUpdate={(isChecked, value) => onCheckUpdate(isChecked, value)} />
             </div>
           ))}
         </div>

@@ -70,7 +70,7 @@ export default function Search() {
   return (
     <div className="w-1/3 hidden md:block relative" ref={dropdown}>
       <FormInput
-        placeholder="Search for the car"
+        placeholder="Search for the car..."
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
       />

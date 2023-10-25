@@ -4,13 +4,13 @@ import FormInput from "../components/ui/form/input/formInput";
 import Button from "../components/ui/button/button";
 import FormTextarea from "../components/ui/form/textarea/formTextarea";
 import {useSelector } from "react-redux";
+import Sidebar from "../components/sidebar/sidebar";
 
 export default function Apply() {
 
   const configurator = useSelector((state) => state.configurator);
-
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto mt-12">
       <div className="flex flex-col xl:flex-row flex-col-reverse">
         <div className="basis-3/5">
           <div className="bg-white rounded">
@@ -42,19 +42,7 @@ export default function Apply() {
             </form>
           </div>
         </div>
-        <div className="xl:pl-6 pb-10 pr-20 static xl:sticky self-start top-0">
-          <h1 className="text-4xl font-bold">{configurator.car.seoTitle}</h1>
-          <p className="text-6xl font-bold text-secondary mt-6">{configurator.car.price} €</p>
-
-          <ul className="mt-10">
-            {configurator.car.attributes.map((attribute, id) => (
-              <li className="mt-2" key={id}>
-                {attribute.name}:{" "}
-                <span className="text-gray-500">{attribute.value}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Sidebar title={configurator.car.seoTitle} attributes={configurator.car.attributes} price={configurator.price}/>
       </div>
     </div>
   );
