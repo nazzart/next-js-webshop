@@ -7,7 +7,6 @@ The project goal was to give a user an ability to lease the car.
 - [Pothos](https://pothos-graphql.dev/)
 - [Prisma](https://www.prisma.io/)
 - [Tailwind](https://tailwindcss.com/)
-- 
 
 ## Getting Started
 
