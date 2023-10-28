@@ -9,6 +9,7 @@ import useForm from "@/hooks/useForm";
 import validate from "@/helpers/formValidation/carRequestFormRules";
 import Alert from "../components/ui/alert/alert";
 import { useState } from "react";
+import SidebarCheckout from "../components/sidebar/sidebarCheckout";
 
 export default function Apply() {
   const configurator = useSelector((state) => state.configurator);
@@ -92,10 +93,7 @@ export default function Apply() {
             </form>
           </div>
         </div>
-        <Sidebar
-          title={configurator.car.seoTitle}
-          attributes={configurator.car.attributes}
-          price={configurator.car.price}
+        <SidebarCheckout
         />
       </div>
     </div>

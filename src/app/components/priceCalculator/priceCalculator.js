@@ -37,7 +37,7 @@ export default function PriceCalculator({car}) {
       dispatch(setLocation(selectedData.location))
       dispatch(setDuration(selectedData.duration))
       dispatch(setEquipment(selectedData.equipment))
-      router.push('/apply')
+      router.push('/checkout')
     }
   }
 

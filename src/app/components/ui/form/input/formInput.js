@@ -46,7 +46,7 @@ export default function FormInput({
         disabled={disabled}
       />
       {error && (
-        <p className={clsx(["text-sm pt-1 pb-6", error && styles.state.error])}>
+        <p className={clsx(["text-sm pt-1 pb-3", error && styles.state.error])}>
           {error}
         </p>
       )}

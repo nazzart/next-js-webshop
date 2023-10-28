@@ -2,7 +2,7 @@
 
 import {useSelector } from "react-redux";
 
-export default function Sidebar({ title, price, attributes }) {
+export default function Sidebar({ title, attributes }) {
 
   const configurator = useSelector((state) => state.configurator);
 
@@ -24,22 +24,6 @@ export default function Sidebar({ title, price, attributes }) {
             </li>
           ))}
         </ul>
-      )}
-
-      {configurator.equipment.length > 0 && (
-        <div className="mt-10">
-          <p className="text-lg mb-6">Selected equipment:</p>
-          <ul>
-            {configurator.equipment.map((equipment, id) => (
-              <span
-                className="mt-2 text-sm text-gray-500 after:content-[',_'] last:after:content-['']"
-                key={id}
-              >
-                {equipment.label}
-              </span>
-            ))}
-          </ul>
-        </div>
       )}
     </div>
   );
