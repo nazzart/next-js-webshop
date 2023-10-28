@@ -1,4 +1,4 @@
-export default function Button({children, onClick, size, classes}) {
+export default function Button({children, onClick, size, type, classes}) {
 
     const sizes = {
         "sm" : "px-5 py-3",
@@ -7,7 +7,7 @@ export default function Button({children, onClick, size, classes}) {
     }
 
     return (
-        <button onClick={onClick} className={`text-sm font-bold rounded ${classes} ${(size in sizes) ? sizes[size] : sizes["md"]}`}>
+        <button type={type} onClick={onClick} className={`text-sm font-bold rounded ${classes} ${(size in sizes) ? sizes[size] : sizes["md"]}`}>
             {children}
         </button>
     )

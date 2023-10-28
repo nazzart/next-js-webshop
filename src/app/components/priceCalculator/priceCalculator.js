@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setLocation, setEquipment, setCar, setDuration, setPrice } from "@/redux/configuratorSlice";
+import { equipmentList, locationList, rentDurationList } from "@/app/mocked-data";
 
 
 export default function PriceCalculator({car}) {
@@ -21,54 +22,6 @@ export default function PriceCalculator({car}) {
     dispatch(setCar(car))
   }, [])
 
-  
-  const locationList = [
-    {value: 1, label: "Location 1, Riga"},
-    {value: 2, label: "Location 2, Riga"},
-    {value: 3, label: "Location 3, Riga"}
-  ];
-
-  const rentDurationList = [
-    {value: 1, label: "1 day", price: car.price},
-    {value: 2, label: "3 days", price: car.price * 3},
-    {value: 3, label: "1 week", price: car.price *  7},
-    {value: 4, label: "2 weeks", price: car.price *  14},
-    {value: 5, label: "3 weeks", price: car.price *  21},
-    {value: 6, label: "1 month", price: car.price * 30},
-  ];
-
-  const equipmentList = [
-    { 
-      value: 1,
-      label: "Infant seat (0-1 year)",
-      price: 5
-    },
-    {
-      value: 2,
-      label: "Child seat with seat belts (1-5 years)",
-      price: 6
-    },
-    {
-      value: 3,
-      label: "PS navigation system with local maps",
-      price: 10
-    },
-    {
-      value: 4,
-      label: "4G WiFi",
-      price: 15
-    },
-    {
-      value: 5,
-      label: "Extra driver",
-      price: 45
-    },
-    {
-      value: 6,
-      label: "Full insurance without liability",
-      price: 25
-    }
-  ];
 
   const [selectedData, setSelectedData] = useState({location: "", duration: "", equipment: []});
   const [errors, setErrors] = useState({});
@@ -119,7 +72,7 @@ export default function PriceCalculator({car}) {
           <FormSelect error={errors?.location} label="Pick-up location" list={locationList} onSelectUpdate={(option) => onSelectUpdate("location", option)}/>
         </div>
         <div>
-          <FormSelect error={errors?.duration} label="Rent duration" list={rentDurationList} onSelectUpdate={(option) => onSelectUpdate("duration", option)}/>
+          <FormSelect error={errors?.duration} label="Rent duration" list={rentDurationList(car)} onSelectUpdate={(option) => onSelectUpdate("duration", option)}/>
         </div>
       </div>
       <div className="bg-white p-6 py-10">

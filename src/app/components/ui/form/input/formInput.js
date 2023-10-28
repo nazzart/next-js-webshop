@@ -24,10 +24,8 @@ export default function FormInput({
   return (
     <div>
       <label
-        className={clsx([
-          "text-gray-500 block mb-2 text-sm",
-          error && styles.state.error,
-        ])}
+        className={
+          "text-gray-500 block mb-2 text-sm"}
         htmlFor={label}
       >
         {label}
@@ -48,8 +46,8 @@ export default function FormInput({
         disabled={disabled}
       />
       {error && (
-        <p className={clsx(["text-sm pt-1", error && styles.state.error])}>
-          Input filed can't be empty!
+        <p className={clsx(["text-sm pt-1 pb-6", error && styles.state.error])}>
+          {error}
         </p>
       )}
     </div>

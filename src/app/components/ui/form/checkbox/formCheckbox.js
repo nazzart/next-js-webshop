@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import Info from "../../icons/infoIcon";
 
 export default function FormCheckbox({label, value, onCheckUpdate}) {
 
@@ -17,7 +18,11 @@ export default function FormCheckbox({label, value, onCheckUpdate}) {
             <input type="checkbox" checked={isChecked} onChange={(e) => handleCheck(e, value)} value={value}/>
             <span className="ml-2">{label}</span>
           </label>
-          <p className={`text-sm mt-2 ${isChecked ? "text-green-500": "text-gray-400"}`}>{isChecked ? "Selected" : "Unchecked"}</p>
+          <div className={`flex pl-5 text-sm mt-1 ${isChecked ? "text-green-500": "text-gray-400"}`}>
+            <Info className={"fill-current"} />
+
+            <span className="pl-1">{isChecked ? "Selected" : "Unchecked"}</span>
+            </div>
         </div>
       );
 }

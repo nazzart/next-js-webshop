@@ -9,7 +9,7 @@ export default function Sidebar({ title, price, attributes }) {
 
 
   return (
-    <div className="basis-2/5 xl:pl-6 pb-10 pr-20 static xl:sticky self-start top-0">
+    <div className="basis-2/5 xl:pl-6 pb-10 pr-20 static xl:sticky self-start top-5">
       <h1 className="text-4xl font-bold">{title}</h1>
       <p className="text-6xl font-bold text-secondary mt-6">
         {configurator.price} €
