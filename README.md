@@ -2,6 +2,7 @@ The project goal was to give a user an ability to lease the car.
 
 ## Tech used
 - [Next.js](https://nextjs.org/) / React
+- [Redux](https://redux.js.org/introduction/getting-started)
 - [GraphQL Apollo](https://www.apollographql.com/docs/)
 - [GraphQL YOGA](https://the-guild.dev/graphql/yoga-server)
 - [Pothos](https://pothos-graphql.dev/)
