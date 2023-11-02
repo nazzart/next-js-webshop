@@ -77,7 +77,7 @@ export default function Search() {
         onChange={(e) => setKeyword(e.target.value)}
         value={keyword}
       />
-      <SearchIcon size={20} className="absolute top-0 bottom-0 right-3 m-auto"/>
+      <SearchIcon size={25} className="absolute top-0 bottom-0 right-3 m-auto"/>
       {isOpen && (
         <div
           className="absolute bg-white w-full shadow-lg z-10" 

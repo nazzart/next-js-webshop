@@ -29,5 +29,6 @@ model Attribute {
   name          String
   value         String
   topParameter  Boolean
+  filter        Boolean
   cars          Car[] 
 }

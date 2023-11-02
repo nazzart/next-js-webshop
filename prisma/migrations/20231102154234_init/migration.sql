@@ -14,7 +14,8 @@ CREATE TABLE "Attribute" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "name" TEXT NOT NULL,
     "value" TEXT NOT NULL,
-    "topParameter" BOOLEAN NOT NULL
+    "topParameter" BOOLEAN NOT NULL,
+    "filter" BOOLEAN NOT NULL
 );
 
 -- CreateTable

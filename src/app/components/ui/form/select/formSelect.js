@@ -62,7 +62,7 @@ export default function FormSelect({error, disabled, label, list, onSelectUpdate
             <ul>
               {list.map(option => (
                 <li onClick={handleSelect(option)} key={Math.random()} className="py-2 cursor-pointer px-4 hover:bg-gray-100">
-                  {option.label}
+                  {option.label || option.value}
                 </li>
               ))}
             </ul>

@@ -16,7 +16,6 @@ export default function SidebarCheckout() {
     return Math.round(brutto * 100) / 100;
   }
 
-
   return (
     <div className="basis-2/5 xl:pl-6 pb-10 static xl:sticky self-start top-5">
       <p className="text-lg mb-2 font-medium">Selected car</p>
@@ -37,7 +36,7 @@ export default function SidebarCheckout() {
           </ul>
         </div>
       )}
-      <div>
+      
         <p className="text-lg mb-2 mt-10 font-medium">Price</p>
             <div className="flex justify-between mt-3 text-sm">
                 <p>Car and configuration (netto)</p>
@@ -51,7 +50,6 @@ export default function SidebarCheckout() {
                 <p>Total price</p>
                 <p>{getTotalPrice(configurator.price)} €</p>
             </div>
-      </div>
     </div>
   );
 }

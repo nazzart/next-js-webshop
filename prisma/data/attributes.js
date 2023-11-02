@@ -15,6 +15,7 @@ async function main() {
       id: 1,
       name: "Engine",
       value: "Petrol",
+      filter: true,
       topParameter: true,
     },
   });
@@ -23,6 +24,7 @@ async function main() {
       id: 2,
       name: "Engine",
       value: "Diesel",
+      filter: true,
       topParameter: true,
     },
   });
@@ -32,6 +34,7 @@ async function main() {
       id: 3,
       name: "Gearbox",
       value: "Manual",
+      filter: true,
       topParameter: true,
     },
   });
@@ -41,6 +44,7 @@ async function main() {
       id: 4,
       name: "Gearbox",
       value: "Automatic",
+      filter: true,
       topParameter: true,
     },
   });
@@ -49,6 +53,7 @@ async function main() {
       id: 5,
       name: "Seats",
       value: "5",
+      filter: false,
       topParameter: false,
     },
   });
@@ -58,6 +63,7 @@ async function main() {
       id: 6,
       name: "AC",
       value: "yes",
+      filter: false,
       topParameter: false,
     },
   });
@@ -67,6 +73,7 @@ async function main() {
       id: 7,
       name: "Drivetrain",
       value: "AWD",
+      filter: true,
       topParameter: true,
     },
   });
@@ -76,6 +83,7 @@ async function main() {
       id: 8,
       name: "Drivetrain",
       value: "RWD",
+      filter: true,
       topParameter: true,
     },
   });
@@ -85,6 +93,7 @@ async function main() {
       id: 9,
       name: "Drivetrain",
       value: "FWD",
+      filter: true,
       topParameter: true,
     },
   });
@@ -94,6 +103,7 @@ async function main() {
       id: 10,
       name: "Consumption",
       value: "10 l",
+      filter: false,
       topParameter: true,
     },
   });
@@ -103,6 +113,7 @@ async function main() {
       id: 11,
       name: "Consumption",
       value: "5 l",
+      filter: false,
       topParameter: true,
     },
   });
@@ -112,6 +123,7 @@ async function main() {
       id: 12,
       name: "Consumption",
       value: "15 l",
+      filter: false,
       topParameter: true,
     },
   });
@@ -121,6 +133,7 @@ async function main() {
       id: 13,
       name: "Consumption",
       value: "8 l",
+      filter: false,
       topParameter: true,
     },
   });
