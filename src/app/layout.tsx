@@ -2,11 +2,13 @@ import Navbar from "./components/navbar/navbar";
 import "./globals.css";
 import {Providers} from '@/app/providers.js';
 import Footer from "./components/footer/footer";
+import { PropsWithChildren } from "react";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "RentCar24 - Rent a car"};
 
-export default function RootLayout({ children }) {
+const RootLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <html lang="en">
       <body className="bg-lightGray">
@@ -19,3 +21,5 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+export default RootLayout;

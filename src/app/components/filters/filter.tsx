@@ -1,11 +1,12 @@
 "use client";
 import { gql, useQuery } from "@apollo/client";
-import FormSelect from "../ui/form/select/formSelect";
-import { useCallback, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import FormSelect from "../ui/form/select/formSelect";
+import { SelectOption } from "@/models/selectOption.interface";
 
-export default function Filter() {
-  const [filterList, setFilterList] = useState([]);
+const Filter: FC = () => {
+  const [filterOptions, setFilterOptions] = useState<{options: SelectOption[]}[]>([]);
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams();
@@ -22,18 +23,18 @@ export default function Filter() {
     `,
     {
       onCompleted: (data) => {
-        const filterAttributes = {};
+        const filterAttributes: any = {};
         for (const { name,  value } of data.filters) {
             if (!filterAttributes[name]) filterAttributes[name] = { name, options: [] };
             filterAttributes[name].options.push({value: name, label: value});
         }
-        setFilterList(Object.values(filterAttributes));
+        setFilterOptions(Object.values(filterAttributes));
       },
     }
   );
 
   const createQueryString = useCallback(
-    (name, value) => {
+    (name: string, value: string) => {
       const params = new URLSearchParams(searchParams)
       params.set(name.toLowerCase(), value.toLowerCase())
  
@@ -44,9 +45,11 @@ export default function Filter() {
 
   return (
     <div className="flex mt-10">
-      {filterList.map((filter, id) => (
+      {filterOptions.map((filter, id) => (
           <FormSelect list={filter.options} key={id} onSelectUpdate={(e) => router.push(pathname + '?' + createQueryString(e.value, e.label))} />
       ))}
     </div>
   );
 }
+
+export default Filter

@@ -2,7 +2,19 @@
 
 import { clsx } from "clsx";
 
-export default function FormInput({
+interface FormInput {
+  type?: string;
+  label?: string;
+  value: string;
+  name?: string;
+  placeholder?: string;
+  error?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const FormInput: React.FC<FormInput> = ({
   type,
   label,
   value,
@@ -12,7 +24,7 @@ export default function FormInput({
   disabled,
   required,
   onChange,
-}) {
+}) => {
   const styles = {
     base: "pl-4 pr-10 outline-0 py-2 w-full border-2 border-slate-100 focus:border-primary",
     state: {
@@ -23,11 +35,7 @@ export default function FormInput({
 
   return (
     <div>
-      <label
-        className={
-          "text-gray-500 block mb-2 text-sm"}
-        htmlFor={label}
-      >
+      <label className={"text-gray-500 block mb-2 text-sm"} htmlFor={label}>
         {label}
         {required ? "*" : ""}
       </label>
@@ -52,4 +60,5 @@ export default function FormInput({
       )}
     </div>
   );
-}
+};
+export default FormInput;

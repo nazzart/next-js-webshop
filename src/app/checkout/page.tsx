@@ -3,17 +3,14 @@
 import FormInput from "../components/ui/form/input/formInput";
 import Button from "../components/ui/button/button";
 import FormTextarea from "../components/ui/form/textarea/formTextarea";
-import { useSelector } from "react-redux";
-import Sidebar from "../components/sidebar/sidebar";
 import useForm from "@/hooks/useForm";
 import validate from "@/helpers/formValidation/carRequestFormRules";
 import Alert from "../components/ui/alert/alert";
 import { useState } from "react";
 import SidebarCheckout from "../components/sidebar/sidebarCheckout";
 
-export default function Apply() {
-  const configurator = useSelector((state) => state.configurator);
-  const [successMessage, setSuccessMessage] = useState(false);
+const Apply: React.FC = () => {
+  const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
   const submit = () => {
     setSuccessMessage(true);
@@ -99,3 +96,5 @@ export default function Apply() {
     </div>
   );
 }
+
+export default Apply;

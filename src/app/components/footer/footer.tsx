@@ -1,6 +1,8 @@
 "use client"
 
-export default function Footer() {
+import { FC } from "react";
+
+const Footer: FC = () => {
     
     return (
         <div className="pt-40 pb-10">
@@ -8,3 +10,5 @@ export default function Footer() {
         </div>
     )
 }
+
+export default Footer;

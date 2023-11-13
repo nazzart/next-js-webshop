@@ -1,8 +1,10 @@
-export default function Info({
+import { FC } from "react";
+
+const Info: FC<Icon> = ({
   size = 18,
   color = "black",
   className,
-}) {
+}) => {
   return (
     <svg
       width={size}
@@ -16,3 +18,5 @@ export default function Info({
     </svg>
   );
 }
+
+export default Info;

@@ -1,4 +1,6 @@
-export default function Arrow({ size = 18, color = "black", direction, className }) {
+import { FC } from "react"
+
+const Arrow: FC<Icon> = ({ size = 18, color = "black", direction, className }) => {
   if (direction === "down") {
     return (
       <svg
@@ -30,3 +32,5 @@ export default function Arrow({ size = 18, color = "black", direction, className
     );
   }
 }
+
+export default Arrow;

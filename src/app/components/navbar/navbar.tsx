@@ -3,15 +3,20 @@
 import Link from "next/link";
 import Search from "./search/search";
 
-export default function Navbar() {
+interface MenuItem {
+  name: string;
+  url: string;
+}
+
+const Navbar: React.FC = () => {
   /**
    * Menu item data
    */
-  const menuItems = [
+  const menuItems: MenuItem[] = [
     {
       name: "Home",
       url: "/",
-    }
+    },
   ];
 
   return (
@@ -26,24 +31,27 @@ export default function Navbar() {
           </div>
         </Link>
 
-
         <div className="flex flex-row justify-between w-full">
-        {menuItems.length > 0 && (
+          {menuItems.length > 0 && (
             <ul>
               {menuItems.map((item, id) => (
                 <li className="p-5 inline-block" key={id}>
-                  <Link href={item.url} key={id} className="font-bold text-white">
+                  <Link
+                    href={item.url}
+                    key={id}
+                    className="font-bold text-white"
+                  >
                     {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
           )}
-        <Search />
+          <Search />
         </div>
-        
-        
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;

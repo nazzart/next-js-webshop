@@ -9,13 +9,19 @@ import Link from "next/link";
 import Image from "next/image";
 import SearchIcon from "../../ui/icons/searchIcon";
 
+interface SearchResults {
+  seoUrl: string;
+  imageUrl: string;
+  seoTitle: string;
+  price: number
+}[]
 
-export default function Search() {
-  const [keyword, setKeyword] = useState("");
-  const [results, setResults] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+const Search: React.FC = () => {
+  const [keyword, setKeyword] = useState<string>("");
+  const [results, setResults] = useState<SearchResults[]>([]);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const dropdown = useRef(null);
+  const dropdown = useRef<HTMLDivElement>(null);
 
   const [searchData] = useLazyQuery(
     gql`
@@ -53,8 +59,8 @@ export default function Search() {
     }
   }, [keyword]);
 
-  const closeWhenClickOutside = (e) => {
-    if (dropdown.current && !dropdown.current.contains(e.target)) {
+  const closeWhenClickOutside = (e: MouseEvent) => {
+    if (dropdown.current && !dropdown.current.contains(e.target as Node)) {
       setIsOpen(false);
       setKeyword("");
     }
@@ -71,19 +77,25 @@ export default function Search() {
 
   return (
     <div className="w-1/3 hidden md:block relative" ref={dropdown}>
-      
       <FormInput
         placeholder="Search for the car..."
-        onChange={(e) => setKeyword(e.target.value)}
+        onChange={(e: any) => setKeyword(e.target.value)}
         value={keyword}
       />
-      <SearchIcon size={25} className="absolute top-0 bottom-0 right-3 m-auto"/>
+      <SearchIcon
+        size={25}
+        className="absolute top-0 bottom-0 right-3 m-auto"
+      />
       {isOpen && (
         <div
-          className="absolute bg-white w-full shadow-lg z-10" 
+          className="absolute bg-white w-full shadow-lg z-10"
           onClick={() => clearSearchResults()}
         >
-            <div className="p-3"><span className="text-sm">Cars found: <strong>{results.length}</strong></span></div>
+          <div className="p-3">
+            <span className="text-sm">
+              Cars found: <strong>{results.length}</strong>
+            </span>
+          </div>
 
           {results.map((result, id) => (
             <Link href={result.seoUrl} key={id}>
@@ -95,10 +107,11 @@ export default function Search() {
                   alt={result.seoTitle}
                 />
                 <div className="pl-4">
-                <p className="text-sm font-bold pb-2">{result.seoTitle}</p>
-                <p className="text-sm text-gray-500">from <strong>{result.price}</strong> €</p>
+                  <p className="text-sm font-bold pb-2">{result.seoTitle}</p>
+                  <p className="text-sm text-gray-500">
+                    from <strong>{result.price}</strong> €
+                  </p>
                 </div>
-            
               </div>
             </Link>
           ))}
@@ -106,4 +119,5 @@ export default function Search() {
       )}
     </div>
   );
-}
+};
+export default Search;

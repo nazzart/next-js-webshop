@@ -2,14 +2,23 @@
 
 import { clsx } from "clsx";
 
-export default function FormTextarea({
+interface FormTextarea {
+  label: string;
+  name: string;
+  rows: number;
+  placeholder: string;
+  error?: boolean;
+  required?: boolean;
+}
+
+const FormTextarea: React.FC<FormTextarea> = ({
   label,
   name,
   rows,
   placeholder,
   error,
   required,
-}) {
+}) => {
   const styles = {
     base: "px-3 outline-0 py-2 w-full border-2 border-slate-100 focus:border-primary",
     state: {
@@ -46,3 +55,5 @@ export default function FormTextarea({
     </div>
   );
 }
+
+export default FormTextarea;

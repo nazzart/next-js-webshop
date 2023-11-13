@@ -1,4 +1,6 @@
-export default function SearchIcon({ size = 18, color = "black", className }) {
+import { FC } from "react";
+
+const SearchIcon: FC<Icon> = ({ size = 18, color = "black", className }) => {
   return (
     <svg
       width={size}
@@ -12,3 +14,4 @@ export default function SearchIcon({ size = 18, color = "black", className }) {
     </svg>
   );
 }
+export default SearchIcon;
